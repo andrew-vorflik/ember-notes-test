@@ -1,0 +1,7 @@
+<article>
+  <LinkTo @route="index.note" @model={{@note.id}}>
+    {{@note.title}}
+  </LinkTo>
+  <p>{{@note.content}}</p>
+  <button type="button" {{on "click" (fn @onDelete @note.id)}}>Удалить заметку</button>
+</article>

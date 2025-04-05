@@ -1,0 +1,71 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <div class="note-details">
+      {{#if this.isEditing}}
+        <h2>Редактирование заметки</h2>
+        <div>
+          <label for="edit-title">Заголовок</label>
+          <input
+            id="edit-title"
+            type="text"
+            value={{this.editedTitle}}
+            {{on "input" this.updateEditedTitle}}
+          />
+        </div>
+
+        <div>
+          <label for="edit-content">Содержимое</label>
+          <textarea
+            id="edit-content"
+            value={{this.editedContent}}
+            {{on "input" this.updateEditedContent}}
+          ></textarea>
+        </div>
+
+        <button type="button" {{on "click" this.saveChanges}}>Сохранить</button>
+        <button type="button" {{on "click" this.cancelEditing}}>Отмена</button>
+      {{else}}
+        <h2>{{this.model.title}}</h2>
+        <p>{{this.model.content}}</p>
+        <button type="button" {{on "click" this.enableEditing}}>Редактировать</button>
+        <button
+          type="button"
+          class="modal-button"
+          {{on "click" this.closeModal}}
+        >
+          Закрыть
+        </button>
+        <button
+          type="button"
+          {{on "click" (fn this.deleteNote this.model.id)}}
+        >Удалить заметку</button>
+      {{/if}}
+      <div class="comments-section">
+        <h3>Комментарии</h3>
+
+        {{!-- Форма добавления комментария --}}
+        <div class="add-comment-form">
+          <input
+            type="text"
+            placeholder="Введите комментарий"
+            value={{this.newComment}}
+            {{on "input" this.updateNewComment}}
+          />
+          <button type="button" {{on "click" this.addComment}}>Добавить</button>
+        </div>
+
+        {{!-- Список комментариев --}}
+        <ul class="comments-list">
+          {{#each this.model.comments as |comment|}}
+            <li>
+              <button
+                type="button" {{on "click" (fn this.deleteComment comment.id)}}
+              >×</button>
+              {{comment.text}}
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="add-note-form">
+  <h2>Добавить новую заметку</h2>
+
+  <form {{on "submit" this.saveNote}}>
+    <div>
+      <label for="title">Заголовок</label>
+      <input
+        id="title"
+        type="text"
+        placeholder="Введите заголовок"
+        value={{this.title}}
+        {{on "input" this.updateTitle}}
+      />
+    </div>
+
+    <div>
+      <label for="content">Содержимое</label>
+      <textarea
+        id="content"
+        placeholder="Введите содержимое"
+        value={{this.content}}
+        {{on "input" this.updateContent}}
+      ></textarea>
+    </div>
+    <button type="submit" disabled={{this.isSaveDisabled}}>Сохранить</button>
+  </form>
+</div>

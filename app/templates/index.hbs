@@ -1,0 +1,6 @@
+{{page-title "Index"}}
+<h1 class="text-3xl font-bold underline">Мои нотатки</h1>
+
+<AddNoteForm />
+<NoteList @notes={{this.model}} @onDelete={{this.deleteNote}} />
+{{outlet}}
