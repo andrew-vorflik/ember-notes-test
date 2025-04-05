@@ -12,4 +12,9 @@ export default class IndexController extends Controller {
     await this.storage.deleteNote(noteId);
     this.model = await this.storage.getNotes(); // Обновляем модель напрямую
   }
+
+  @action
+  addNote(newNote) {
+    this.model = [newNote, ...this.model];
+  }
 }

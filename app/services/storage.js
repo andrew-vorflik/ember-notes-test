@@ -11,7 +11,7 @@ export default class StorageService extends Service {
 
   addNote(newNote) {
     const notes = this.getNotes();
-    notes.push(newNote);
+    notes.unshift(newNote);
     this.saveNotes(notes);
   }
 

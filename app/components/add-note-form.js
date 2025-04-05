@@ -8,14 +8,18 @@ export default class AddNoteFormComponent extends Component {
   @service storage;
 
   @tracked title = '';
+  @tracked formSubmitted = false;
+  @tracked hasTitleError = false;
   content = '';
 
-  get isSaveDisabled() {
-    return this.title.trim() === ''; // Кнопка будет дизейблена, если title пустой
-  }
-
   @action
-  saveNote() {
+  saveNote(event) {
+    event.preventDefault();
+
+    console.log('this.hasTitleError', this.hasTitleError);
+
+    this.formSubmitted = true;
+
     const newNote = {
       id: Date.now(),
       title: this.title,
@@ -23,12 +27,21 @@ export default class AddNoteFormComponent extends Component {
       comments: [],
     };
 
-    if (this.title.trim() !== '') {
-      this.storage.addNote(newNote);
+    if (!this.title.trim()) {
+      console.log('trim');
 
-      this.title = '';
-      this.content = '';
+      this.hasTitleError = true; // Устанавливаем ошибку, если заголовок пуст
+      return;
     }
+    this.storage.addNote(newNote);
+
+    this.title = '';
+    this.content = '';
+
+    this.formSubmitted = false;
+    this.hasTitleError = false;
+
+    this.args.addNote(newNote);
   }
 
   @action

@@ -3,12 +3,16 @@
   tabindex="-1"
   aria-hidden="true"
   class="modal-overlay hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+  {{on "click" this.closeModal}}
 >
-  <div class="relative p-4 w-full max-w-2xl max-h-full">
+  <div
+    class="modal-window relative p-4 w-full max-w-2xl max-h-full"
+    {{on "click" (fn this.stopPropagation)}}
+  >
     <!-- Modal content -->
     <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
       <!-- Modal header -->
-      <div class="flex items-start justify-between px-4 md:p-5 rounded-t">
+      <div class="flex items-start justify-between p-4 pb-0 rounded-t">
         {{#if this.isEditing}}
           <input
             id="edit-title"
@@ -27,7 +31,7 @@
           class="cursor-pointer focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm ms-auto px-5 py-2.5 mx-2 dark:focus:ring-yellow-900"
           {{on "click" this.enableEditing}}
         ><svg
-            class="w-6 h-6 dark:text-white"
+            class="w-4 h-4 dark:text-white"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -41,6 +45,28 @@
               stroke-linejoin="round"
               stroke-width="2"
               d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"
+            />
+          </svg>
+        </button>
+        <button
+          type="button"
+          class="cursor-pointer focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+          {{on "click" this.deleteNote}}
+        ><svg
+            class="w-4 h-4 inherit dark:text-white"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"
             />
           </svg>
         </button>
@@ -100,9 +126,16 @@
         <div class="w-full">
           {{! Форма добавления комментария }}
           <div class="mb-5">
+            {{#if this.hasCommentError}}
+              <p class="text-red-600 text-sm">At least 1 character is required!</p>
+            {{/if}}
             <div class="flex items-center gap-2">
               <input
-                class="flex-grow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                class="flex-grow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+                  {{if
+                    this.hasCommentError
+                    'bg-red-50 border border-red-500 text-red-900 placeholder-red-700'
+                  }}"
                 placeholder="Add your comment"
                 value={{this.newComment}}
                 {{on "input" this.updateNewComment}}
@@ -123,7 +156,7 @@
             <ul class="comments-list">
               {{#each this.model.comments as |comment|}}
                 <li
-                  class="flex justify-between items-center p-3 rounded shadow-sm mb-3"
+                  class="flex justify-between items-center px-3 py-1.5 rounded shadow-sm mb-3"
                 >
                   <p class="italic text-gray-500 dark:text-gray-300">
                     {{comment.text}}

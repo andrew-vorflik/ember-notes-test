@@ -12,6 +12,7 @@ export default class IndexNoteController extends Controller {
   @tracked editedTitle = ''; // Для редактируемого заголовка
   @tracked editedContent = ''; // Для редактируемого содержимого
   @tracked newComment = '';
+  @tracked hasCommentError = false;
 
   #refreshModel() {
     const owner = getOwner(this);
@@ -24,6 +25,11 @@ export default class IndexNoteController extends Controller {
   closeModal() {
     this.isEditing = false;
     this.router.transitionTo('index');
+  }
+
+  @action
+  stopPropagation(event) {
+    event.stopPropagation();
   }
 
   @action
@@ -80,6 +86,7 @@ export default class IndexNoteController extends Controller {
   @action
   addComment() {
     if (this.newComment.trim() === '') {
+      this.hasCommentError = true;
       return; // Не добавляем пустые комментарии
     }
 
@@ -98,6 +105,7 @@ export default class IndexNoteController extends Controller {
 
     // Очищаем поле ввода
     this.newComment = '';
+    this.hasCommentError = false;
   }
 
   @action
@@ -116,6 +124,7 @@ export default class IndexNoteController extends Controller {
   @action
   updateNewComment(event) {
     this.newComment = event.target.value;
+    this.hasCommentError = false;
     this.#refreshModel();
   }
 }
