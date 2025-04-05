@@ -41,9 +41,3 @@
 .modal-button:hover {
   background-color: #0056b3;
 }
-
-input,
-textarea,
-button {
-  border: 1px solid #000;
-}

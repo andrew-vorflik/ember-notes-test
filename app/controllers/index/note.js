@@ -22,6 +22,7 @@ export default class IndexNoteController extends Controller {
   // Methods with modal window
   @action
   closeModal() {
+    this.isEditing = false;
     this.router.transitionTo('index');
   }
 
@@ -40,7 +41,7 @@ export default class IndexNoteController extends Controller {
   // Editing mode
   @action
   enableEditing() {
-    this.isEditing = true;
+    this.isEditing = !this.isEditing;
     this.editedTitle = this.model.title; // Устанавливаем текущие данные
     this.editedContent = this.model.content;
   }

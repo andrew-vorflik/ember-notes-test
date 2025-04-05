@@ -1,27 +1,30 @@
-<div class="add-note-form">
-  <h2>Добавить новую заметку</h2>
+<div class="flex items-center justify-center mb-6">
+  <form
+    {{on "submit" this.saveNote}}
+    class="bg-white p-6 rounded-lg shadow-lg w-full max-w-[700px]"
+  >
 
-  <form {{on "submit" this.saveNote}}>
-    <div>
-      <label for="title">Заголовок</label>
-      <input
-        id="title"
-        type="text"
-        placeholder="Введите заголовок"
-        value={{this.title}}
-        {{on "input" this.updateTitle}}
-      />
-    </div>
+    <input
+      id="title"
+      class="mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      type="text"
+      placeholder="Title note"
+      value={{this.title}}
+      {{on "input" this.updateTitle}}
+    />
 
-    <div>
-      <label for="content">Содержимое</label>
-      <textarea
-        id="content"
-        placeholder="Введите содержимое"
-        value={{this.content}}
-        {{on "input" this.updateContent}}
-      ></textarea>
-    </div>
-    <button type="submit" disabled={{this.isSaveDisabled}}>Сохранить</button>
+    <textarea
+      id="content"
+      rows="4"
+      class="resize-none mb-3 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Add a description if necessary"
+      value={{this.content}}
+      {{on "input" this.updateContent}}
+    ></textarea>
+    <button
+      type="submit"
+      disabled={{this.isSaveDisabled}}
+      class="cursor-pointer focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 block ml-auto"
+    >Add note</button>
   </form>
 </div>
