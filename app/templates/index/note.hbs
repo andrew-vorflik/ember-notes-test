@@ -7,11 +7,11 @@
 >
   <div
     class="modal-window relative p-4 w-full max-w-2xl max-h-full"
-    {{on "click" (fn this.stopPropagation)}}
+    {{on "click" this.stopPropagation}}
   >
-    <!-- Modal content -->
+    {{!-- Modal content --}}
     <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
-      <!-- Modal header -->
+      {{!-- Modal header --}}
       <div class="flex items-start justify-between p-4 pb-0 rounded-t">
         {{#if this.isEditing}}
           <input
@@ -94,7 +94,7 @@
         </button>
 
       </div>
-      <!-- Modal body -->
+      {{!-- Modal body --}}
       <div class="p-4 md:p-5 space-y-4">
         {{#if this.isEditing}}
           <textarea
@@ -119,7 +119,7 @@
         {{/if}}
 
       </div>
-      <!-- Modal footer -->
+      {{!-- Modal footer --}}
       <div
         class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600"
       >

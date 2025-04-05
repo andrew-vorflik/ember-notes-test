@@ -2,9 +2,28 @@
 <AddNoteForm @addNote={{this.addNote}} />
 
 {{! class="grid gap-[30px] grid-cols-[repeat(auto-fill,_minmax(400px,_1fr))] auto-rows-[180px]" }}
+
 <div
   class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
 >
-  <NoteList @notes={{this.model}} @onDelete={{this.deleteNote}} />
+  <NoteList
+    @notes={{this.model}}
+    @onDelete={{this.deleteNote}}
+    @onOpenModal={{this.showModal}}
+  />
 </div>
+
+{{!-- <p>Close {{this.closeModal}}</p> --}}
+{{!-- <p>Show {{this.showModal}}</p> --}}
+<p>Show {{this.model}}</p>
+
+{{#if this.showDeleteNoteModal}}
+  <DeleteNoteModal
+    @closeModal={{this.closeModal}}
+    @stopPropagation={{this.stopPropagation}}
+    @onDelete={{this.deleteNote}}
+    @note={{this.noteToDelete}}
+  />
+{{/if}}
+
 {{outlet}}

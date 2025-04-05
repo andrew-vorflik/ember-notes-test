@@ -10,7 +10,7 @@ export default class AddNoteFormComponent extends Component {
   @tracked title = '';
   @tracked formSubmitted = false;
   @tracked hasTitleError = false;
-  content = '';
+  @tracked content = '';
 
   @action
   saveNote(event) {

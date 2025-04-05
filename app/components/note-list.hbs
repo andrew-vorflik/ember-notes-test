@@ -1,3 +1,7 @@
 {{#each @notes as |note|}}
-  <NoteItem @note={{note}} @onDelete={{@onDelete}} />
+  <NoteItem
+    @note={{note}}
+    @onDelete={{@onDelete}}
+    @onOpenModal={{@onOpenModal}}
+  />
 {{/each}}

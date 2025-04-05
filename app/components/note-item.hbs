@@ -1,7 +1,31 @@
-<LinkTo @route="index.note" @model={{@note.id}}>
-  <article
-    class="group flex flex-col relative bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 h-full"
+<article
+  class="group flex flex-col relative bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 h-full"
+>
+  <button
+    class="absolute cursor-pointer z-100 top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm p-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+    type="button"
+    {{on "click" (fn @onOpenModal @note)}}
   >
+    <svg
+      class="w-4 h-4 inherit dark:text-white"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      height="14"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"
+      />
+    </svg>
+
+  </button>
+  <LinkTo @route="index.note" @model={{@note.id}}>
     <div class="px-6 py-4 flex-grow overflow-hidden">
 
       <h5
@@ -11,29 +35,7 @@
       <p
         class="text-sm text-gray-600 dark:text-gray-400 line-clamp-3"
       >{{@note.content}}</p>
-      <button
-        class="bg-red-500 text-white p-2 rounded-full"
-        class="absolute cursor-pointer z-100 top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-      >
-        <svg
-          class="w-4 h-4 inherit dark:text-white"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          width="14"
-          height="14"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"
-          />
-        </svg>
 
-      </button>
     </div>
     {{#if @note.comments.length}}
       <div
@@ -43,5 +45,5 @@
         {{@note.comments.length}}
       </div>
     {{/if}}
-  </article>
-</LinkTo>
+  </LinkTo>
+</article>
