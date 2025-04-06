@@ -31,7 +31,7 @@ export default class StorageService extends Service {
     const index = notes.findIndex((note) => note.id === updatedNote.id);
     if (index !== -1) {
       notes[index] = updatedNote;
-      this.saveNotes(notes); // Сохраняем обновленные заметки
+      this.saveNotes(notes);
     }
   }
 

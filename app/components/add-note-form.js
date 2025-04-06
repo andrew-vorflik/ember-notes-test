@@ -1,4 +1,3 @@
-// app/components/add-note-form.js
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
@@ -27,7 +26,7 @@ export default class AddNoteFormComponent extends Component {
     };
 
     if (!this.title.trim()) {
-      this.hasTitleError = true; // Устанавливаем ошибку, если заголовок пуст
+      this.hasTitleError = true;
       return;
     }
     this.storage.addNote(newNote);

@@ -29,7 +29,7 @@ export default class IndexController extends Controller {
     let deletedNoteId = this.noteToDelete.id || noteId;
 
     await this.storage.deleteNote(deletedNoteId);
-    this.model = await this.storage.getNotes(); // Обновляем модель напрямую
+    this.model = await this.storage.getNotes();
 
     if (this.noteToDelete !== null) {
       this.closeModal();
@@ -49,8 +49,6 @@ export default class IndexController extends Controller {
   // Sorting
   @action
   handleSortChange(event) {
-    console.log('here', event.target.value);
-
     const sortOption = event.target.value;
 
     switch (sortOption) {
@@ -77,26 +75,21 @@ export default class IndexController extends Controller {
         break;
     }
   }
+
   @action
   sortNotesByAlphabet(order = 'asc') {
-    console.log('service method', order);
-
     const sortedNotes = this.noteManager.sortByAlphabet(this.model, order);
     this.model = sortedNotes;
   }
 
   @action
   sortByCommentsCount(order = 'asc') {
-    console.log('service method', order);
-
     const sortedNotes = this.noteManager.sortByCommentsCount(this.model, order);
     this.model = sortedNotes;
   }
 
   @action
   sortByDate(order = 'asc') {
-    console.log('service method date', order);
-
     const sortedNotes = this.noteManager.sortByDate(this.model, order);
     this.model = sortedNotes;
   }
@@ -104,8 +97,6 @@ export default class IndexController extends Controller {
   // Filter
   @action
   handleFilterChange(event) {
-    console.log('here', event.target.value);
-
     const sortOption = event.target.value;
 
     switch (sortOption) {
@@ -151,7 +142,6 @@ export default class IndexController extends Controller {
   @action
   handleSearch(event) {
     const searchValue = event.target.value.toLowerCase();
-    // const notesForSearch = this.defaultFilteredNotes;
 
     const searchedNotes = this.noteManager.searchNotes(
       this.defaultFilteredNotes,

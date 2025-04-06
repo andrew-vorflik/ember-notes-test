@@ -4,42 +4,39 @@ export default class NoteManagerService extends Service {
   // Sorted notes
   sortByAlphabet(notes, order = 'asc') {
     return notes.sort((a, b) => {
-      const nameA = a.title.toLowerCase(); // предполагаем, что у заметок есть свойство title
+      const nameA = a.title.toLowerCase();
       const nameB = b.title.toLowerCase();
 
       if (order === 'asc') {
-        return nameA.localeCompare(nameB); // от A к Z
+        return nameA.localeCompare(nameB);
       } else {
-        return nameB.localeCompare(nameA); // от Z к A
+        return nameB.localeCompare(nameA);
       }
     });
   }
 
-  // Сортировка по количеству комментариев
   sortByCommentsCount(notes, order = 'asc') {
     return notes.sort((a, b) => {
-      const commentsA = a.comments.length; // предполагаем, что у заметок есть свойство comments (массив)
+      const commentsA = a.comments.length;
       const commentsB = b.comments.length;
 
       if (order === 'asc') {
-        return commentsA - commentsB; // от меньшего к большему
+        return commentsA - commentsB;
       } else {
-        return commentsB - commentsA; // от большего к меньшему
+        return commentsB - commentsA;
       }
     });
   }
 
   sortByDate(notes, order = 'asc') {
     return notes.sort((a, b) => {
-      const dateA = new Date(a.createdAt); // предполагаем, что у заметок есть свойство createdAt
+      const dateA = new Date(a.createdAt);
       const dateB = new Date(b.createdAt);
 
-      console.log(dateA, dateB, dateA - dateB);
-
       if (order === 'asc') {
-        return dateA - dateB; // от старых к новым
+        return dateA - dateB;
       } else {
-        return dateB - dateA; // от новых к старым
+        return dateB - dateA;
       }
     });
   }
@@ -59,7 +56,7 @@ export default class NoteManagerService extends Service {
 
   //Searching
   searchNotes(notes, searchText = '') {
-    const normalizedSearchText = searchText.toLowerCase(); // Приводим текст поиска к нижнему регистру
+    const normalizedSearchText = searchText.toLowerCase();
 
     return notes.filter((note) => {
       const titleMatches = note.title
@@ -67,9 +64,9 @@ export default class NoteManagerService extends Service {
         .includes(normalizedSearchText);
       const contentMatches =
         note.content &&
-        note.content.toLowerCase().includes(normalizedSearchText); // проверяем наличие контента
+        note.content.toLowerCase().includes(normalizedSearchText);
 
-      return titleMatches || contentMatches; // Если есть совпадение в заголовке или содержимом, включаем заметку
+      return titleMatches || contentMatches;
     });
   }
 }

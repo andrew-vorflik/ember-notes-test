@@ -1,3 +1,4 @@
+{{page-title "Note " this.model.title replace=true}}
 <div
   data-modal-backdrop="static"
   tabindex="-1"
@@ -9,9 +10,7 @@
     class="modal-window relative p-4 w-full max-w-2xl max-h-full"
     {{on "click" this.stopPropagation}}
   >
-    {{! Modal content }}
     <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
-      {{! Modal header }}
       <div class="flex items-start justify-between p-5 pb-0 rounded-t">
         {{#if this.isEditing}}
           <input
@@ -94,7 +93,6 @@
         </button>
 
       </div>
-      {{! Modal body }}
       <div class="p-5 space-y-4">
         {{#if this.isEditing}}
           <textarea
@@ -108,7 +106,7 @@
               type="button"
               class="cursor-pointer focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
               {{on "click" this.saveChanges}}
-            >Сохранить</button>
+            >Update</button>
           </div>
         {{else}}
           <p
@@ -119,12 +117,10 @@
         {{/if}}
 
       </div>
-      {{! Modal footer }}
       <div
         class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600"
       >
         <div class="w-full">
-          {{! Форма добавления комментария }}
           <form class="mb-5" {{on "submit" this.addComment}}>
             {{#if this.hasCommentError}}
               <p class="text-red-600 text-sm">At least 1 character is required!</p>
@@ -148,7 +144,6 @@
             </div>
           </form>
 
-          {{! Список комментариев }}
           <p
             class="font-medium text-gray-900 dark:text-white mb-5"
           >Comments:</p>
