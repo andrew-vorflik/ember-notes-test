@@ -25,6 +25,8 @@ export default class IndexNoteController extends Controller {
   closeModal() {
     this.isEditing = false;
     this.router.transitionTo('index');
+    this.newComment = '';
+    this.hasCommentError = false;
   }
 
   @action
@@ -81,7 +83,9 @@ export default class IndexNoteController extends Controller {
 
   // Add comments
   @action
-  addComment() {
+  addComment(event) {
+    event.preventDefault();
+
     if (this.newComment.trim() === '') {
       this.hasCommentError = true;
       return; // Не добавляем пустые комментарии

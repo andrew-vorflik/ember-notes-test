@@ -1,17 +1,59 @@
 {{page-title "Index"}}
 <AddNoteForm @addNote={{this.addNote}} />
 
-{{! class="grid gap-[30px] grid-cols-[repeat(auto-fill,_minmax(400px,_1fr))] auto-rows-[180px]" }}
-
-<div
-  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-[180px]"
->
-  <NoteList
-    @notes={{this.model}}
-    @onDelete={{this.deleteNote}}
-    @onOpenModal={{this.showModal}}
-  />
+<div>
+  <form class="max-w-sm mx-auto">
+    <div>
+      <label
+        for="countries"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >Sort by:</label>
+      <select
+        id="countries"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        {{on "change" this.handleSortChange}}
+      >
+        <option value="dateDesc" selected>Default</option>
+        <option value="alphabetAsc">Alphabet (ask)</option>
+        <option value="alphabetDesc">Alphabet (desk)</option>
+        <option value="commentsAsc">Comments count (ask)</option>
+        <option value="commentsDesc">Comments count (desk)</option>
+        <option value="dateAsc">Date (ask)</option>
+        <option value="dateDesc">Date (desk)</option>
+      </select>
+    </div>
+    <div>
+      <label
+        for="countries"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >Filter by:</label>
+      <select
+        id="countries"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        {{on "change" this.handleFilterChange}}
+      >
+        <option value="none" selected>None</option>
+        <option value="hasComments">Has comments</option>
+        <option value="hasDescription">Has description</option>
+      </select>
+    </div>
+  </form>
 </div>
+
+{{#if this.model.length}}
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-[180px]"
+  >
+    <NoteList
+      @notes={{this.model}}
+      @onDelete={{this.deleteNote}}
+      @onOpenModal={{this.showModal}}
+    />
+  </div>
+
+{{else}}
+  <p class="italic text-center text-gray-500 dark:text-gray-400 p-10">No notes</p>
+{{/if}}
 
 {{#if this.showDeleteNoteModal}}
   <DeleteNoteModal

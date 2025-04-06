@@ -22,6 +22,7 @@ export default class AddNoteFormComponent extends Component {
       id: Date.now(),
       title: this.title,
       content: this.content,
+      createdAt: new Date(),
       comments: [],
     };
 
