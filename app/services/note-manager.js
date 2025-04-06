@@ -56,4 +56,20 @@ export default class NoteManagerService extends Service {
       return note.content.length > 0;
     });
   }
+
+  //Searching
+  searchNotes(notes, searchText = '') {
+    const normalizedSearchText = searchText.toLowerCase(); // Приводим текст поиска к нижнему регистру
+
+    return notes.filter((note) => {
+      const titleMatches = note.title
+        .toLowerCase()
+        .includes(normalizedSearchText);
+      const contentMatches =
+        note.content &&
+        note.content.toLowerCase().includes(normalizedSearchText); // проверяем наличие контента
+
+      return titleMatches || contentMatches; // Если есть совпадение в заголовке или содержимом, включаем заметку
+    });
+  }
 }

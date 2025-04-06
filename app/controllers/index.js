@@ -146,4 +146,18 @@ export default class IndexController extends Controller {
   clearFilter() {
     this.model = this.defaultFilteredNotes;
   }
+
+  // Searching
+  @action
+  handleSearch(event) {
+    const searchValue = event.target.value.toLowerCase();
+    // const notesForSearch = this.defaultFilteredNotes;
+
+    const searchedNotes = this.noteManager.searchNotes(
+      this.defaultFilteredNotes,
+      searchValue,
+    );
+
+    this.model = searchedNotes;
+  }
 }
