@@ -1,33 +1,33 @@
 {{page-title "Awesome notes"}}
 <div class="bg-gray-200 dark:bg-gray-800 shadow-md mb-5 py-2">
   <div class="container mx-auto px-8">
-    <form class="flex justify-start space-x-5">
-      <div class="flex items-center space-x-2">
+    <form class="flex flex-col justify-start space-x-5 md:flex-row">
+      <div class="flex items-center space-x-2 mb-2 me-0 md:mb-0 md:me-3">
         <label
-          for="countries"
-          class="flex-shrink-0 block text-sm font-medium text-gray-900 dark:text-white"
+          for="sort"
+          class="w-15 md:w-auto flex-shrink-0 block text-sm font-medium text-gray-900 dark:text-white"
         >Sort by:</label>
         <select
-          id="countries"
+          id="sort"
           class="cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           {{on "change" this.handleSortChange}}
         >
           <option value="dateDesc" selected>Default</option>
-          <option value="alphabetAsc">Alphabet (ask)</option>
-          <option value="alphabetDesc">Alphabet (desk)</option>
-          <option value="commentsAsc">Comments count (ask)</option>
-          <option value="commentsDesc">Comments count (desk)</option>
-          <option value="dateAsc">Date (ask)</option>
-          <option value="dateDesc">Date (desk)</option>
+          <option value="alphabetAsc">Alphabet (A - Z)</option>
+          <option value="alphabetDesc">Alphabet (Z - A)</option>
+          <option value="commentsAsc">Comments count (less first)</option>
+          <option value="commentsDesc">Comments count (more first)</option>
+          <option value="dateAsc">Date (newest)</option>
+          <option value="dateDesc">Date (latest)</option>
         </select>
       </div>
-      <div class="flex items-center space-x-2">
+      <div class="flex items-center space-x-2 mb-2 me-0 md:mb-0 md:me-3">
         <label
-          for="countries"
-          class="flex-shrink-0 block text-sm font-medium text-gray-900 dark:text-white"
+          for="filter"
+          class="w-15 md:w-auto flex-shrink-0 block text-sm font-medium text-gray-900 dark:text-white"
         >Filter by:</label>
         <select
-          id="countries"
+          id="filter"
           class="cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           {{on "change" this.handleFilterChange}}
         >
@@ -36,12 +36,12 @@
           <option value="hasDescription">Has description</option>
         </select>
       </div>
-      <div class="flex items-center space-x-2">
+      <div class="flex items-center space-x-2 mb-2 md:mb-0">
         <label
-          for="countries"
-          class="flex-shrink-0 block text-sm font-medium text-gray-900 dark:text-white"
+          for="search"
+          class="w-15 md:w-auto flex-shrink-0 block text-sm font-medium text-gray-900 dark:text-white"
         >Search:</label>
-        <div class="relative">
+        <div class="relative w-full">
           <div
             class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
           >
@@ -63,7 +63,7 @@
           </div>
           <input
             type="search"
-            id="default-search"
+            id="search"
             class="block w-full p-4 py-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search Mockups, Logos..."
             required
