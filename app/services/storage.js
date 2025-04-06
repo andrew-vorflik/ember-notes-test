@@ -34,4 +34,13 @@ export default class StorageService extends Service {
       this.saveNotes(notes); // Сохраняем обновленные заметки
     }
   }
+
+  // theme methods
+  getTheme() {
+    return localStorage.getItem('theme') || 'light';
+  }
+
+  setTheme(theme) {
+    localStorage.setItem('theme', theme);
+  }
 }

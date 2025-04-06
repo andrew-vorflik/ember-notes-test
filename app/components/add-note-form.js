@@ -16,8 +16,6 @@ export default class AddNoteFormComponent extends Component {
   saveNote(event) {
     event.preventDefault();
 
-    console.log('this.hasTitleError', this.hasTitleError);
-
     this.formSubmitted = true;
 
     const newNote = {
@@ -28,8 +26,6 @@ export default class AddNoteFormComponent extends Component {
     };
 
     if (!this.title.trim()) {
-      console.log('trim');
-
       this.hasTitleError = true; // Устанавливаем ошибку, если заголовок пуст
       return;
     }

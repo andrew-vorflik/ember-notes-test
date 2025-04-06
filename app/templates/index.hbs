@@ -4,7 +4,7 @@
 {{! class="grid gap-[30px] grid-cols-[repeat(auto-fill,_minmax(400px,_1fr))] auto-rows-[180px]" }}
 
 <div
-  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-[180px]"
 >
   <NoteList
     @notes={{this.model}}
@@ -12,10 +12,6 @@
     @onOpenModal={{this.showModal}}
   />
 </div>
-
-{{!-- <p>Close {{this.closeModal}}</p> --}}
-{{!-- <p>Show {{this.showModal}}</p> --}}
-<p>Show {{this.model}}</p>
 
 {{#if this.showDeleteNoteModal}}
   <DeleteNoteModal

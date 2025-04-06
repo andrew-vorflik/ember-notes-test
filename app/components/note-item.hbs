@@ -1,8 +1,8 @@
 <article
-  class="group flex flex-col relative bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 h-full"
+  class="transition-all duration-500 ease-out group flex flex-col relative bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 h-full"
 >
   <button
-    class="absolute cursor-pointer z-100 top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm p-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+    class="absolute cursor-pointer z-100 top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm p-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-900 dark:focus:ring-gray-700 dark:border-gray-700"
     type="button"
     {{on "click" (fn @onOpenModal @note)}}
   >
@@ -25,9 +25,12 @@
     </svg>
 
   </button>
-  <LinkTo @route="index.note" @model={{@note.id}}>
+  <LinkTo
+    @route="index.note"
+    @model={{@note.id}}
+    class="cursor-pointer flex flex-col h-full"
+  >
     <div class="px-6 py-4 flex-grow overflow-hidden">
-
       <h5
         class="mb-2 pe-7 text-lg font-bold tracking-tight text-gray-900 dark:text-white truncate"
         title="{{@note.title}}"
@@ -39,7 +42,7 @@
     </div>
     {{#if @note.comments.length}}
       <div
-        class="border-t border-gray-300 pt-2 text-sm px-6 py-3 text-sm text-gray-400 italic"
+        class="border-t border-gray-300 dark:border-gray-600 pt-2 text-sm px-6 py-3 text-gray-400 italic"
       >
         comments:
         {{@note.comments.length}}

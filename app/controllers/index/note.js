@@ -34,8 +34,6 @@ export default class IndexNoteController extends Controller {
 
   @action
   deleteNote() {
-    console.log('Deleting note from controller');
-
     const note = this.model;
     this.storage.deleteNote(note.id);
 
@@ -73,7 +71,6 @@ export default class IndexNoteController extends Controller {
   // Editing handlers
   @action
   updateEditedTitle(event) {
-    console.log('event.target.value:', event.target.value);
     this.editedTitle = event.target.value; // Обновляем значение editedTitle
   }
 
